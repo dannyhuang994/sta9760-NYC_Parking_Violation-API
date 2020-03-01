@@ -1,4 +1,4 @@
-from src.api import get_data, get_size
+from src.api import get_data
 from sys import argv
 import argparse
 
@@ -14,9 +14,6 @@ if __name__=='__main__':
     if page_size is None:
         print('Page size should be specified!')
         exit()
-    if num_pages is None:
-        total = get_size()
-        num_pages = (total // page_size) + 1
 
     get_data(page_size, num_pages, output_fn)
 
