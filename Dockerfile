@@ -6,7 +6,7 @@ RUN pip install pandas
 
 WORKDIR /app
 
-COPY . /app
+COPY . .
 
 RUN pip install -r requirements.txt
 
