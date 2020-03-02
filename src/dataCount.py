@@ -2,10 +2,6 @@ from requests import get, HTTPError
 from sodapy import Socrata
 import os
 
-# API_BASE = 'data.cityofnewyork.us'
-# END_POINT = 'nc67-uf89'
-# APP_KEY = os.environ.get('APP_KEY')
-
 def get_size(API_BASE, END_POINT, APP_KEY ):
     '''get the number of data point in api'''
     try:
