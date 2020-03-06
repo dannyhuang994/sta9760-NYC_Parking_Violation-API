@@ -2,6 +2,7 @@ from requests import get, HTTPError
 from sodapy import Socrata
 from src.dataCount import get_size
 import os
+import json
 
 API_BASE = 'data.cityofnewyork.us'
 END_POINT = 'nc67-uf89'
@@ -32,10 +33,12 @@ def get_data(page_size: int, num_pages = None, output_fn = None):
                     print(item)
         else:
             with open(output_fn, 'w') as fw:
+                temp = {'Number of Records': page_size*num_pages,'data_list':[]}
                 for i in range(num_pages):
                     r = client.get(END_POINT, limit = page_size, offset = i*page_size)
                     for item in r:
-                        fw.write( str(item)+'\n')
+                        temp['data_list'].append(item)
+                json.dump(temp, fw)
     except Exception as e:
         print(f'Something Went Wrong with: {e}')
         raise
